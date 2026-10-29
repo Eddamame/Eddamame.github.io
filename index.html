@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eddison Kuah | Fintech Undergraduate</title>
+<meta name="description" content="Portfolio of Eddison Kuah, BSc Applied Computing (Fintech) undergraduate at Singapore Institute of Technology.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Habibi&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1a0a06; --cream:#fbf5ef; --flame:#e55639;
+    --muted:#6b5b55; --border:#1a0a061a; --card:#fff9f3;
+    --sidebar:360px; --radius:14px;
+    --serif:"Habibi",Georgia,serif; --sans:"Geist",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:90px}
+  body{background:var(--cream);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.15}
+  .skip{position:absolute;left:-999px}.skip:focus{left:8px;top:8px;background:var(--ink);color:#fff;padding:8px 12px;z-index:99}
+
+  /* ---------- Fixed sidebar ---------- */
+  aside{position:fixed;inset:0 auto 0 0;width:var(--sidebar);padding:24px;border-right:1px solid var(--border);
+        display:flex;flex-direction:column;overflow-y:auto;background:var(--cream)}
+  .avatar{display:block;object-fit:cover;width:168px;height:168px;border-radius:14px;background:linear-gradient(135deg,var(--flame),#f2a48f);
+          display:grid;place-items:center;color:#fff;font:400 34px var(--serif)}
+  aside h1{font-size:26px;margin-top:28px}
+  .role{color:var(--muted);font-size:14px}
+  .tagline{color:var(--muted);margin:16px 0;font-size:16px}
+  hr{border:0;border-top:1px solid var(--border);margin:8px 0 16px}
+  .facts{list-style:none;font-size:14px;display:grid;gap:8px}
+  .facts li{display:flex;gap:10px;align-items:center}
+  .facts svg{width:15px;height:15px;flex:none}
+  .side-bottom{margin-top:auto;padding-top:32px}
+  .socials{display:flex;gap:10px;margin-bottom:12px}
+  .icon-btn{width:34px;height:34px;border:1px solid var(--border);display:grid;place-items:center;font-size:12px;font-weight:600;border-radius:6px}
+  .icon-btn:hover{border-color:var(--ink)}
+  .cta-row{display:flex;gap:10px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--ink);color:#fff;
+       padding:12px 20px;border-radius:8px;font-weight:500;font-size:15px;transition:transform .15s,background .15s}
+  .btn:hover{transform:translateY(-1px);background:#33150d}
+  .btn.grow{flex:1}.btn.light{background:#efe6dd;color:var(--ink);padding:12px 16px}
+
+  /* ---------- Top nav ---------- */
+  .wrap{margin-left:var(--sidebar)}
+  nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--cream) 88%,transparent);backdrop-filter:blur(8px)}
+  nav .inner{max-width:640px;margin:0 auto;padding:16px 0;display:flex;align-items:center;gap:22px;font-size:14px;color:var(--muted)}
+  nav a:hover{color:var(--ink)}
+  nav .logo{width:28px;height:28px;color:var(--flame);display:grid;place-items:center}
+  nav .logo svg{width:24px;height:24px}
+  nav .logo:hover{color:var(--ink)}
+  nav .btn{margin-left:auto;padding:9px 16px;font-size:14px}
+
+  main{max-width:640px;margin:0 auto;padding-bottom:40px}
+  section{padding:72px 0 8px}
+  h2{font-size:40px;margin-bottom:20px}
+  p{color:var(--muted);margin-bottom:14px}
+
+  /* ---------- Hero ---------- */
+  .hero{text-align:center;padding-top:80px}
+  .hero-icon{width:120px;height:120px;margin:0 auto 40px;color:var(--flame)}
+  .hero h1{font-size:46px}
+  .hero p{max-width:460px;margin:16px auto 32px;font-size:17px}
+  .pill{display:inline-flex;align-items:center;gap:12px;padding:6px;border:1px solid var(--border);border-radius:99px;background:var(--card)}
+  .dots{display:flex;padding-left:8px}.dots i{width:14px;height:14px;border-radius:50%;margin-left:-4px;display:block}
+  .pill .btn{border-radius:99px;padding:10px 18px}
+
+  /* ---------- Content blocks ---------- */
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+  .chip{border:1px solid var(--border);background:var(--card);border-radius:99px;padding:5px 14px;font-size:13px}
+  .item{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--border)}
+  .item:last-child{border:0}
+  .badge{flex:none;width:40px;height:40px;border-radius:10px;background:var(--ink);color:#fff;display:grid;place-items:center;font-family:var(--serif)}
+  .item h3{font-size:18px;font-family:var(--sans);font-weight:500}
+  .item .where{color:var(--muted);font-size:14px;margin:0}
+  .item .when{color:var(--flame);font-size:13px;margin:2px 0 0}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;transition:transform .15s,border-color .15s}
+  .card:hover{transform:translateY(-3px);border-color:var(--flame)}
+  .card h3{font-size:20px;margin-bottom:6px}
+  .card p{margin:0;font-size:14px}
+  ul.pts{margin:10px 0 0 18px;color:var(--muted);font-size:14px;display:grid;gap:4px}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+  .tag{font-size:12px;background:#efe6dd;border-radius:6px;padding:2px 8px;color:var(--ink)}
+  .note{font-size:14px;color:var(--muted);margin:8px 0 0}
+  .item>div{min-width:0}
+  .connect{text-align:center;padding-bottom:48px}
+  .connect p{max-width:440px;margin:0 auto 24px}
+  .email-card{display:flex;align-items:center;gap:14px;max-width:360px;margin:0 auto;padding:16px 20px;text-align:left;
+              background:#1a0a060d;transition:background .15s}
+  .email-card:hover{background:#1a0a061a}
+  .email-card svg{width:24px;height:24px;flex:none;color:var(--flame)}
+  .email-card strong{display:block;font-weight:500}
+  .email-card small{color:var(--muted);font-size:14px}
+  .connect .find{margin:28px auto 12px;font-size:14px}
+  .connect .socials{justify-content:center;margin:0}
+  .connect .icon-btn{width:46px;height:46px;border-radius:0}
+  .grid{grid-template-columns:1fr}
+  .card:hover{transform:none;border-color:var(--flame)}
+  .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+  .shot{padding:0;border:1px solid var(--border);border-radius:10px;overflow:hidden;cursor:zoom-in;background:#fff;aspect-ratio:16/10;display:block}
+  .shot img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform .25s}
+  .shot:hover img{transform:scale(1.04)}
+  .repo{display:inline-block;margin-top:16px;font-size:14px;font-weight:500;color:var(--flame)}
+  .repo:hover{text-decoration:underline}
+  dialog#lightbox{margin:auto;border:0;background:transparent;max-width:min(1100px,94vw);max-height:92vh;padding:0;overflow:visible}
+  dialog#lightbox::backdrop{background:#1a0a06cc}
+  dialog#lightbox img{width:100%;max-height:88vh;object-fit:contain;border-radius:8px;background:#fff;display:block}
+  dialog#lightbox button{position:absolute;right:-6px;top:-44px;background:none;border:0;color:#fff;font-size:34px;line-height:1;cursor:pointer}
+  h3.sub{font-size:22px;margin:24px 0 12px}
+  .stack{display:grid;gap:14px}
+  .stack .lbl{display:block;font-size:13px;color:var(--ink);font-weight:500;margin-bottom:6px}
+  .logos{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px}
+  .lg{height:42px;width:42px;object-fit:contain;transition:transform .15s}
+  .lg.wide{width:62px}
+  .lg:hover{transform:translateY(-3px) scale(1.08)}
+  .lamp{display:inline-flex;align-items:center;gap:12px;padding:6px 14px;border:1px solid var(--border);border-radius:99px;background:var(--card)}
+  .lamp .lg{height:32px;width:32px}
+  .also{font-size:13px;margin:0}
+  form{display:grid;gap:12px}
+  input,textarea{font:inherit;padding:12px 14px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--ink)}
+  input:focus,textarea:focus{outline:2px solid var(--flame);outline-offset:1px}
+  textarea{min-height:120px;resize:vertical}
+  form .btn{justify-self:start;border:0;cursor:pointer}
+  footer{max-width:640px;margin:0 auto;padding:32px 0 48px;border-top:1px solid var(--border);display:flex;justify-content:space-between;font-size:14px;color:var(--muted)}
+
+  /* ---------- Mobile: sidebar becomes a header block ---------- */
+  @media (max-width:900px){
+    aside{position:static;width:auto;border:0;border-bottom:1px solid var(--border)}
+    aside h1{margin-top:20px}.side-bottom{padding-top:20px}
+    .wrap{margin-left:0}
+    nav .inner,main,footer{padding-left:20px;padding-right:20px}
+    nav .inner{overflow-x:auto;white-space:nowrap}
+    .grid{grid-template-columns:1fr}
+    .gallery{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+    .hero h1{font-size:36px}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#about">Skip to content</a>
+
+<!-- ============ SIDEBAR (edit me) ============ -->
+<aside>
+  <img class="avatar" src="images/me.jpg" alt="Eddison Kuah">
+  <h1>Eddison Kuah</h1>
+  <div class="role">Fintech Undergraduate</div>
+  <p class="tagline">Turning commercial strategy into scalable solutions across the tech stack.</p>
+  <hr>
+  <ul class="facts">
+    <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>Singapore</li>
+    <li><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 7h-4V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zm-10-2h4v2h-4z"/></svg>BSc Applied Computing (Fintech)</li>
+    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>SIT · Class of 2028</li>
+  </ul>
+  <div class="side-bottom">
+    <div class="socials">
+      <a class="icon-btn" href="https://www.linkedin.com/in/eddison-kuah" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+      <a class="icon-btn" href="https://github.com/Eddamame" aria-label="GitHub"><svg viewBox="0 0 16 16" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    </div>
+    <div class="cta-row">
+      <a class="btn grow" href="https://www.linkedin.com/in/eddison-kuah" target="_blank" rel="noopener">View LinkedIn</a>
+      <a class="btn light" href="mailto:eddisonkuah@gmail.com" aria-label="Email">✉</a>
+    </div>
+  </div>
+</aside>
+
+<div class="wrap">
+  <nav>
+    <div class="inner">
+      <a class="logo" href="#top" aria-label="Home" title="Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v10h13V10"/><path d="M10 20v-6h4v6"/></svg></a>
+      <a href="#about">About</a><a href="#experience">Experience</a>
+      <a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
+      <a class="btn" href="#contact">Contact Me</a>
+    </div>
+  </nav>
+
+  <main id="top">
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <svg class="hero-icon" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="18" y="26" width="84" height="62" rx="8" fill="#fde3da"/>
+        <path d="M40 100h40M60 88v12"/>
+        <path d="M32 70l16-16 12 10 20-22"/><path d="M72 42h8v8"/>
+        <path d="M60 8v6M26 14l4 4M94 14l-4 4"/>
+      </svg>
+      <h1>Fintech Undergraduate</h1>
+      <p>Passionate about building innovative solutions to help organisations stay lean, agile and profitable.</p>
+      <div class="pill">
+        <span class="dots"><i style="background:var(--flame)"></i><i style="background:var(--ink)"></i><i style="background:#c9c2bd"></i></span>
+        <a class="btn" href="#experience">View Experience →</a>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section id="about">
+      <h2>About</h2>
+      <p>Hi, I'm Eddison, an undergraduate pursuing a BSc in Applied Computing, specialising in Fintech. Whether it's through automation or innovative FinTech solutions, I'm constantly learning how to use technology to help organisations stay lean, agile, and profitable.</p>
+      <p>I have a solid technical foundation in Python, Excel and SQL for quantitative analysis, complemented by financial knowledge.</p>
+      <h3 class="sub">Tech stack</h3>
+      <div class="stack">
+        <div><span class="lbl">Languages</span><div class="logos"><img class="lg" src="images/logos/python.svg" alt="Python" title="Python" loading="lazy"><img class="lg" src="images/logos/java.svg" alt="Java" title="Java" loading="lazy"><img class="lg" src="images/logos/c.svg" alt="C" title="C" loading="lazy"><img class="lg" src="images/logos/r.svg" alt="R" title="R" loading="lazy"></div></div>
+        <div><span class="lbl">Web &amp; frameworks</span><div class="logos"><span class="lamp" title="LAMP stack: Linux, Apache, MySQL, PHP"><img class="lg" src="images/logos/linux.svg" alt="Linux" title="Linux" loading="lazy"><img class="lg" src="images/logos/apache.svg" alt="Apache" title="Apache" loading="lazy"><img class="lg" src="images/logos/mysql.svg" alt="MySQL" title="MySQL" loading="lazy"><img class="lg" src="images/logos/php.svg" alt="PHP" title="PHP" loading="lazy"></span><img class="lg" src="images/logos/flask.svg" alt="Flask" title="Flask" loading="lazy"><img class="lg" src="images/logos/react.svg" alt="React" title="React" loading="lazy"></div></div>
+        <div><span class="lbl">Data &amp; big data</span><div class="logos"><img class="lg" src="images/logos/hadoop.svg" alt="Hadoop" title="Hadoop" loading="lazy"><img class="lg" src="images/logos/spark.svg" alt="Apache Spark" title="Apache Spark" loading="lazy"><img class="lg" src="images/logos/postgresql.svg" alt="PostgreSQL" title="PostgreSQL" loading="lazy"><img class="lg" src="images/logos/mongodb.svg" alt="MongoDB" title="MongoDB" loading="lazy"></div></div>
+        <div><span class="lbl">Cloud &amp; tools</span><div class="logos"><img class="lg wide" src="images/logos/aws.svg" alt="AWS" title="AWS" loading="lazy"><img class="lg" src="images/logos/gcp.svg" alt="Google Cloud" title="Google Cloud" loading="lazy"><img class="lg" src="images/logos/terraform.svg" alt="Terraform" title="Terraform" loading="lazy"><img class="lg" src="images/logos/git.svg" alt="Git" title="Git" loading="lazy"></div></div>
+        <p class="also">Also: SQL · Excel &amp; VBA · Power Query · Data Modeling · RPA · SAP Ariba</p>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section id="experience">
+      <h2>Experience</h2>
+      <div class="item"><div class="badge">H</div><div>
+        <h3>Financial Planning and Analysis Intern</h3>
+        <p class="where">Hapag-Lloyd AG · Internship · Singapore</p><p class="when">May 2026 – Aug 2026</p>
+        <ul class="pts">
+          <li>Transformed Excel models into a scalable star-schema data model, automating complex route and transshipment logic and improving usability and maintainability.</li>
+          <li>Refactored Power Query (M) logic for cargo planning files, adding error-handling and bypass logic for data inconsistencies.</li>
+          <li>Supported the Financial Controlling Department in planning, budgeting, forecasting and monthly closing across terminal, transport and overhead cost centres for Region Asia.</li>
+        </ul></div></div>
+      <div class="item"><div class="badge">S</div><div>
+        <h3>Sales Project Manager</h3>
+        <p class="where">SEMNET PTE LTD · Full-time · Singapore</p><p class="when">Sep 2024 – Aug 2025</p>
+        <ul class="pts">
+          <li>Shortened the sales cycle through consultative selling and tailored tech solution proposals.</li>
+          <li>Improved account retention with post-sale onboarding and technical support coordination.</li>
+          <li>Secured 5 named accounts within the first 6 months, each contributing ~100k.</li>
+        </ul>
+        <p class="note">Solutions: Fortinet, Sophos, Cisco, Arista Networks, Ubiquiti, Dell EMC, Lenovo, Hyper-V, MS Azure, MS Copilot, PRTG, Trend Micro</p></div></div>
+      <div class="item"><div class="badge">C</div><div>
+        <h3>Automation Project Intern</h3>
+        <p class="where">Celestica · Internship · Singapore (on-site)</p><p class="when">Mar 2023 – Aug 2023</p>
+        <ul class="pts">
+          <li>Led 3 RPA projects with the Suzhou Tech Enhancement Team to automate processes ahead of the S/4 HANA implementation.</li>
+          <li>Automated inventory tracking and projection, cutting report generation from 3+ hours to under 10 minutes using Excel VBA and waterfall charts.</li>
+          <li>Coordinated across 2 departments and 5 main stakeholders to keep RPA work aligned with ERP transition goals.</li>
+        </ul></div></div>
+    </section>
+
+    <!-- ============ EDUCATION ============ -->
+    <section id="education">
+      <h2>Education</h2>
+      <div class="item"><div>
+        <h3>BSc, Applied Computing (Fintech)</h3>
+        <p class="where">Singapore Institute of Technology</p><p class="when">Class of 2028</p>
+        <p class="note">SIT Investment and Commerce Club · Student Developers Club</p>
+        <div class="tags">
+          <span class="tag">Python / Java / C</span><span class="tag">Web Dev (LAMP, React, Flask)</span>
+          <span class="tag">MySQL / PostgreSQL / MongoDB</span><span class="tag">Data Structures &amp; Algorithms</span>
+          <span class="tag">Software Engineering</span><span class="tag">OOP</span><span class="tag">Financial Risk Management</span>
+          <span class="tag">Business Valuation</span><span class="tag">Machine Learning</span><span class="tag">Data Engineering &amp; Visualisation (R)</span>
+        </div></div></div>
+      <div class="item"><div>
+        <h3>Diploma</h3>
+        <p class="where">Ngee Ann Polytechnic</p>
+        <p class="note">Toastmasters (Public Speaking) · Winner, Best Cinematographer, National Youth Film Awards 2021 · Overseas Merit Fellowship: Geopolitical Studies in South-East Asia</p></div></div>
+    </section>
+
+    <!-- ============ CERTIFICATIONS ============ -->
+    <section id="certifications">
+      <h2>Certifications &amp; Courses</h2>
+      <div class="chips">
+        <span class="chip">AWS Certified Solutions Architect Associate</span>
+        <span class="chip">Google Data Analytics Professional Certificate</span>
+        <span class="chip">Fortinet Certified Fundamentals: Cybersecurity</span>
+        <span class="chip">Breaking Into Wall Street (BIWS): Core Financial Modeling</span>
+      </div>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section id="projects">
+      <h2>Projects</h2>
+      <!-- Repo links are set per card (Stock Analytics has none on purpose).
+           Screenshots live in /images. Placeholder images are named <project>-1.jpg ... -3.jpg: overwrite them with your own (same filename), or edit the src. -->
+      <div class="grid">
+        <article class="card" id="proj-fitcheck">
+          <h3>Fit-Check: Cloud Sizing Service</h3>
+          <p>Multi-brand clothing size recommender on AWS. It suggests a size from body measurements or photos, then retrains nightly on shopper feedback and only promotes a new model if it passes a held-back check (the first retrain lifted simulated size agreement by 4.5 points). I led the API, AWS architecture, Terraform, security design and cloud testing.</p>
+          <div class="tags"><span class="tag">AWS</span><span class="tag">Terraform</span><span class="tag">FastAPI</span><span class="tag">PostgreSQL</span><span class="tag">MediaPipe</span></div>
+          <div class="gallery"><button type="button" class="shot" data-full="images/fitcheck-1.jpg"><img src="images/fitcheck-1.jpg" alt="Scan with photos: front and side capture" loading="lazy"></button><button type="button" class="shot" data-full="images/fitcheck-4.jpg"><img src="images/fitcheck-4.jpg" alt="Recommended size with fit score" loading="lazy"></button><button type="button" class="shot" data-full="images/fitcheck-5.jpg"><img src="images/fitcheck-5.jpg" alt="Architecture on AWS across two Availability Zones" loading="lazy"></button></div>
+          <a class="repo" href="https://github.com/Eddamame/Fit-Check" target="_blank" rel="noopener">View repo on GitHub →</a>
+        </article>
+        <article class="card" id="proj-cybergrid">
+          <h3>CyberGrid</h3>
+          <p>Custom 2D game engine built from scratch in Java, plus an educational cybersecurity game (Scanning, Escape, Attack) on top of it. I led engine refactoring and the entity system.</p>
+          <div class="tags"><span class="tag">Java</span><span class="tag">JavaFX</span><span class="tag">OOP / SOLID</span><span class="tag">UML</span></div>
+          <div class="gallery"><button type="button" class="shot" data-full="images/cybergrid-2.jpg"><img src="images/cybergrid-2.jpg" alt="Scanning a server node while the AI hunts" loading="lazy"></button><button type="button" class="shot" data-full="images/cybergrid-3.jpg"><img src="images/cybergrid-3.jpg" alt="Escape phase with temporary obfuscation" loading="lazy"></button><button type="button" class="shot" data-full="images/cybergrid-4.jpg"><img src="images/cybergrid-4.jpg" alt="Exploiting a vulnerable server" loading="lazy"></button></div>
+          <a class="repo" href="https://github.com/Eddamame/CyberGrid" target="_blank" rel="noopener">View repo on GitHub →</a>
+        </article>
+        <article class="card" id="proj-pawshield">
+          <h3>PawShield</h3>
+          <p>AI-powered pet insurance app that scans vet receipts with Google Document AI and auto-approves claims by confidence score, cutting turnaround from days to minutes. I owned architecture, the AI pipeline and GCP deployment.</p>
+          <div class="tags"><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">GCP Document AI</span><span class="tag">Stripe</span></div>
+          <div class="gallery"><button type="button" class="shot" data-full="images/pawshield-1.jpg"><img src="images/pawshield-1.jpg" alt="PawShield home page" loading="lazy"></button><button type="button" class="shot" data-full="images/pawshield-3.jpg"><img src="images/pawshield-3.jpg" alt="AI scan results from an uploaded vet receipt" loading="lazy"></button><button type="button" class="shot" data-full="images/pawshield-4.jpg"><img src="images/pawshield-4.jpg" alt="Auto-approved claim" loading="lazy"></button></div>
+          <a class="repo" href="https://github.com/Eddamame/PawShield" target="_blank" rel="noopener">View repo on GitHub →</a>
+        </article>
+        <article class="card" id="proj-lowlatency-db">
+          <h3>Low-Latency DB in C</h3>
+          <p>Command-line class management system with CRUD, CSV bulk import, multi-criteria sorting and FIFO history tracking, in a modular Makefile-built codebase.</p>
+          <div class="tags"><span class="tag">C</span><span class="tag">Algorithms</span><span class="tag">Makefile</span></div>
+          <div class="gallery"><button type="button" class="shot" data-full="images/lowlatency-db-1.jpg"><img src="images/lowlatency-db-1.jpg" alt="CMS command-line interface showing database commands" loading="lazy"></button><button type="button" class="shot" data-full="images/lowlatency-db-2.jpg"><img src="images/lowlatency-db-2.jpg" alt="File structure overview of the C modules" loading="lazy"></button></div>
+          <a class="repo" href="https://github.com/Eddamame/P5-4_C_Project" target="_blank" rel="noopener">View repo on GitHub →</a>
+        </article>
+        <article class="card" id="proj-stock-analytics">
+          <h3>Stock Analytics Web App</h3>
+          <p>Flask app on live YFinance data: SMA trends, daily returns, "runs" analysis, a max-profit entry/exit algorithm and back-tested linear regression price targets.</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">YFinance</span><span class="tag">Regression</span></div>
+          <div class="gallery"><button type="button" class="shot" data-full="images/stock-analytics-1.jpg"><img src="images/stock-analytics-1.jpg" alt="Market Analyzer ticker and time period form" loading="lazy"></button><button type="button" class="shot" data-full="images/stock-analytics-2.jpg"><img src="images/stock-analytics-2.jpg" alt="Choosing which analyses to run" loading="lazy"></button><button type="button" class="shot" data-full="images/stock-analytics-3.jpg"><img src="images/stock-analytics-3.jpg" alt="Results page with charts for each analysis" loading="lazy"></button></div>
+        </article>
+      </div>
+      <p class="note">More on <a href="https://github.com/Eddamame" style="color:var(--flame)">GitHub →</a></p>
+      <dialog id="lightbox"><button type="button" aria-label="Close">×</button><img alt=""></dialog>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="chips">
+        <span class="chip">Python</span><span class="chip">Java</span><span class="chip">C</span><span class="chip">PHP</span><span class="chip">SQL</span><span class="chip">R</span>
+        <span class="chip">Flask</span><span class="chip">React</span><span class="chip">Excel / VBA</span><span class="chip">Power Query</span>
+        <span class="chip">MySQL</span><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span>
+        <span class="chip">AWS</span><span class="chip">Google Cloud</span><span class="chip">Git</span>
+        <span class="chip">RPA</span><span class="chip">SAP Ariba</span><span class="chip">Data Modeling</span>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section id="contact" class="connect">
+      <h2>Let's Connect</h2>
+      <p>Open to internships, collaborations and conversations about FinTech and automation.</p>
+      <a class="email-card" href="mailto:eddisonkuah@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        <span><strong>Email Me</strong><small>eddisonkuah@gmail.com</small></span>
+      </a>
+      <p class="find">Find me on:</p>
+      <div class="socials">
+        <a class="icon-btn" href="https://www.linkedin.com/in/eddison-kuah" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a class="icon-btn" href="https://github.com/Eddamame" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 16 16" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+      </div>
+    </section>
+  </main>
+
+  <footer><span>© <span id="yr"></span> Eddison Kuah</span><a href="#top">Back to top ↑</a></footer>
+</div>
+<script>document.getElementById('yr').textContent=new Date().getFullYear()</script>
+<script>
+(function(){
+  var d=document.getElementById('lightbox'); if(!d) return; var img=d.querySelector('img');
+  document.querySelectorAll('.shot').forEach(function(b){b.addEventListener('click',function(){
+    img.src=b.dataset.full; img.alt=b.querySelector('img').alt; d.showModal();});});
+  d.addEventListener('click',function(e){ if(e.target!==img) d.close(); });
+})();
+</script>
+</body>
+</html>
