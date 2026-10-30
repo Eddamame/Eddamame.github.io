@@ -61,8 +61,14 @@
 
   /* ---------- Hero ---------- */
   .hero{text-align:center;padding-top:80px}
-  .hero-icon{width:120px;height:120px;margin:0 auto 40px;color:var(--flame)}
   .hero h1{font-size:46px}
+  .hero h1 em{color:var(--flame);font-style:italic}
+  .candles{display:block;width:100%;max-width:640px;height:170px;margin:-14px auto 18px;
+           -webkit-mask-image:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent);mask-image:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent)}
+  .candles .slide{transition:transform .7s cubic-bezier(.4,0,.2,1)}
+  .candles .up{fill:var(--flame);stroke:var(--flame)}
+  .candles .dn{fill:var(--ink);stroke:var(--ink);opacity:.82}
+  .candles .wick{stroke-width:1.6}
   .hero p{max-width:460px;margin:16px auto 32px;font-size:17px}
   .pill{display:inline-flex;align-items:center;gap:12px;padding:6px;border:1px solid var(--border);border-radius:99px;background:var(--card)}
   .dots{display:flex;padding-left:8px}.dots i{width:14px;height:14px;border-radius:50%;margin-left:-4px;display:block}
@@ -181,13 +187,8 @@
   <main id="top">
     <!-- ============ HERO ============ -->
     <section class="hero">
-      <svg class="hero-icon" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <rect x="18" y="26" width="84" height="62" rx="8" fill="#fde3da"/>
-        <path d="M40 100h40M60 88v12"/>
-        <path d="M32 70l16-16 12 10 20-22"/><path d="M72 42h8v8"/>
-        <path d="M60 8v6M26 14l4 4M94 14l-4 4"/>
-      </svg>
-      <h1>Fintech Undergraduate</h1>
+      <svg class="candles" id="candles" viewBox="0 0 640 150" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><g class="slide" id="slide"></g></svg>
+      <h1><em>Fintech</em> Undergraduate</h1>
       <p>Passionate about building innovative solutions to help organisations stay lean, agile and profitable.</p>
       <div class="pill">
         <span class="dots"><i style="background:var(--flame)"></i><i style="background:var(--ink)"></i><i style="background:#c9c2bd"></i></span>
@@ -352,6 +353,36 @@
   document.querySelectorAll('.shot').forEach(function(b){b.addEventListener('click',function(){
     img.src=b.dataset.full; img.alt=b.querySelector('img').alt; d.showModal();});});
   d.addEventListener('click',function(e){ if(e.target!==img) d.close(); });
+})();
+</script>
+<script>
+/* Hero: live market candles */
+(function(){
+  var svg=document.getElementById('slide'); if(!svg) return;
+  var N=26,step=24,H=150,ns='http://www.w3.org/2000/svg',price=90,data=[];
+  function next(){var o=price,c=o+(Math.random()-.47)*36,h=Math.max(o,c)+Math.random()*14,l=Math.min(o,c)-Math.random()*14;price=Math.min(115,Math.max(55,c));return{o:o,c:c,h:h,l:l};}
+  for(var i=0;i<N+1;i++)data.push(next());
+  function y(v){return H-((v-35)/(135-35))*H;}
+  function el(n,a){var e=document.createElementNS(ns,n);for(var k in a)e.setAttribute(k,a[k]);return e;}
+  function render(){
+    svg.innerHTML='';
+    data.forEach(function(d,i){
+      var x=i*step+12,cls=d.c>=d.o?'up':'dn';
+      svg.appendChild(el('line',{x1:x,x2:x,y1:y(d.h),y2:y(d.l),'class':cls+' wick'}));
+      svg.appendChild(el('rect',{x:x-7,y:y(Math.max(d.o,d.c)),width:14,height:Math.max(3,Math.abs(y(d.o)-y(d.c))),rx:2,'class':cls}));
+    });
+  }
+  render();
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  setInterval(function(){
+    if(document.hidden) return;
+    svg.style.transform='translateX('+(-step)+'px)';
+    setTimeout(function(){
+      data.shift();data.push(next());
+      svg.style.transition='none';svg.style.transform='translateX(0)';render();
+      void svg.getBBox();svg.style.transition='';
+    },720);
+  },1400);
 })();
 </script>
 </body>
